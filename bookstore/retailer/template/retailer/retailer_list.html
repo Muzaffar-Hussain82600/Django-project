@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block title %}Retailer List{% endblock %}
+
+{% block content %}
+    <h1 class="text-3xl font-bold mb-6">Our Retailer</h1>
+    {% if retailer %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for retailers in retailer %}
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold">
+                        <a href="{% url 'retailer:retailer_detail' retailer.pk %}" class="text-blue-600 hover:underline">
+                            {{ retailer.name }}
+                        </a>
+                    </h2>
+                    <p class="text-gray-600">Mobile_no: {{ retailer.mobile_no }}</p>
+                    <p class="text-gray-600">Joined: {{ retailer.joined_date|date:"F d, Y" }}</p>
+                    <p class="text-green-600 font-bold">Total_sales: ${{ retailer.total_sales }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-600">No books available at the moment.</p>
+    {% endif %}
+{% endblock %}

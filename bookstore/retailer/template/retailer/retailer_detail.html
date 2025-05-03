@@ -1,0 +1,16 @@
+
+
+{% extends "base.html" %}
+
+{% block name %}{{ retailer.name }}{% endblock %}
+
+{% block content %}
+    <h1 class="text-3xl font-bold mb-4">{{ retailer.name }}</h1>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <p class="text-gray-600"><strong>Mobile_no:</strong> {{ retailer.mobile_no }}</p>
+        <p class="text-gray-600"><strong>Date of Joining:</strong> {{ retailer.date_of_joining|date:"F d, Y" }}</p>
+        <p class="text-green-600 font-bold"><strong>Total_sales:</strong> ${{ retailer.total_sales }}</p>
+        <p class="text-gray-600"><strong>Active:</strong> {% if retailer.is_active %}Active{% else %}Hidden{% endif %}</p>
+        <a href="{% url 'retailer:retailer_list' %}" class="mt-4 inline-block text-blue-600 hover:underline">Back to Retailer List</a>
+    </div>
+{% endblock %}
